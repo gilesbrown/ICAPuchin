@@ -86,7 +86,8 @@ class ICAPRequest(HTTPMessage):
         http_response = deepcopy(self.http_response)
         # remove content-length for modified responses
         del http_response['content-length']
-
+        # allow CORS for icap server
+        http_response['Access-Control-Allow-Origin'] = '*'
         if decode:
             decoder = self.content_decoder()
             http_response['content-encoding'] = 'identity'
